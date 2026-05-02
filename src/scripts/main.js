@@ -18,30 +18,39 @@ function checkTable() {
 }
 
 appendRow.addEventListener('click', () => {
-  const newRow = table.insertRow();
-  for (let i = 0; i < table.rows[0].cells.length; i++) {
-    newRow.insertCell();
+  if (table.rows.length < 10) {
+    const newRow = table.insertRow();
+
+    for (let i = 0; i < table.rows[0].cells.length; i++) {
+      newRow.insertCell();
+    }
+    checkTable();
   }
-  checkTable();
 });
- removeRow.addEventListener('click', () => {
-  table.deleteRow(-1);
-  checkTable();
+
+removeRow.addEventListener('click', () => {
+  if (table.rows.length > 2) {
+    table.deleteRow(-1);
+    checkTable();
+  }
 });
 
 appendCol.addEventListener('click', () => {
-  for (let i = 0; i < table.rows.length; i++) {
-    table.rows[i].insertCell();
+  if (table.rows[0].cells.length < 10) {
+    for (let i = 0; i < table.rows.length; i++) {
+      table.rows[i].insertCell();
+    }
+    checkTable();
   }
-  checkTable();
 });
 
 removeCol.addEventListener('click', () => {
-  for (let i = 0; i < table.rows.length; i++) {
-    table.rows[i].deleteCell(-1);
+  if (table.rows[0].cells.length > 2) {
+    for (let i = 0; i < table.rows.length; i++) {
+      table.rows[i].deleteCell(-1);
+    }
+    checkTable();
   }
-  checkTable();
 });
 
 checkTable();
-
