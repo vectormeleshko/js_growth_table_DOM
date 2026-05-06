@@ -18,12 +18,16 @@ function checkTable() {
 }
 
 appendRow.addEventListener('click', () => {
-  if (table.rows.length < 10) {
+  const currentRowCount = table.rows.length;
+  const currentColCount = table.rows[0].cells.length;
+
+  if (currentRowCount < 10) {
     const newRow = table.insertRow();
 
-    for (let i = 0; i < table.rows[0].cells.length; i++) {
+    for (let i = 0; i < currentColCount; i++) {
       newRow.insertCell();
     }
+
     checkTable();
   }
 });
